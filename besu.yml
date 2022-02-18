@@ -43,16 +43,12 @@ services:
       - --p2p-port
       - ${EL_P2P_PORT}
       - --rpc-http-enabled
-      - --rpc-http-api
-      - "ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,EXECUTION"
       - --rpc-http-host
       - 0.0.0.0
-      - --rpc-http-port
-      - ${EL_RPC_PORT}
       - --rpc-http-cors-origins=*
       - --rpc-ws-enabled
       - --rpc-ws-api
-      - "ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,EXECUTION"
+      - "ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,ENGINE"
       - --rpc-ws-host
       - 0.0.0.0
       - --rpc-ws-port
