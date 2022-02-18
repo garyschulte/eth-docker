@@ -249,7 +249,7 @@ envmigrate() {
           rm "${ENV_FILE}".bak
       fi
       sudo -u "${OWNER}" cp "${ENV_FILE}" "${ENV_FILE}".bak
-      sudo -u "${OWNER}" cp default.env "${ENV_FILE}"
+      sudo -u "${OWNER}" cp "${NETWORK}"-default.env "${ENV_FILE}"
       sudo -u "${OWNER}" cp "${ENV_FILE}".bak .env.source
     else
       cp "${ENV_FILE}" "${ENV_FILE}".bak
@@ -279,11 +279,14 @@ query_network() {
     # Mainnet or Testnet network
     NETWORK=$(whiptail --notags --title "Select Network" --menu \
     "Which network do you want to run on?" 9 60 2 \
+    "devnet4"  "Devnet4 Merge Testnet" \
     "kintsugi" "Kintsugi Merge Testnet" 3>&1 1>&2 2>&3)
 
     if [ "${NETWORK}" = "kintsugi" ]; then
         echo "You chose to run on Kintsugi merge testnet"
-    else
+    elif [ "${NETWORK}" = "devnet4" ]; then
+        echo "You chose to run on devnet4 merge testnet"
+    else 
         echo "You chose Cancel."
         exit 0
     fi
@@ -638,6 +641,9 @@ config () {
     fi
     if [ "${NETWORK}" = "kintsugi" ]; then
 	COMPOSE_FILE="${COMPOSE_FILE}:kintsugi-tools.yml"
+    fi
+    if [ "${NETWORK}" = "devnet4" ]; then
+	COMPOSE_FILE="${COMPOSE_FILE}:devnet4-tools.yml"
     fi
 
     echo "Your COMPOSE_FILE is:" "${COMPOSE_FILE}"
