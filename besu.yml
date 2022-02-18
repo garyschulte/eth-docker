@@ -60,9 +60,12 @@ services:
       - --metrics-host
       - 0.0.0.0
         #      - --Xdata-storage-format=BONSAI
-      - --sync-mode=FULL
-      - --network
-      - kintsugi_v1
+      - --genesis-file
+      - "/configs/besu_genesis.json"
+      - --network-id
+      - ${NETWORK_ID}
+      - --bootnodes
+      - ${ENODE}
       - --Xmerge-support
       - "true"
       - --miner-coinbase
