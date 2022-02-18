@@ -52,6 +52,7 @@ services:
       - --metrics-host-allowlist=*
       - --network=/configs/config.yaml
       - --initial-state=/configs/genesis.ssz
+      - --p2p-discovery-bootnodes=${ENR}
       # - --network=${NETWORK}
       - --Xee-endpoint=${EL_NODE}
       - --Xee-version=kiln
